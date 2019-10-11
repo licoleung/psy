@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="publicPages/head::#headPart">
+</head>
+<body>
+<header class="main-header">
+    <div th:replace="publicPages/header::#header(activeUri='essay')"></div>
+</header>
+<div class="main-banner four">
+    <!--<h2 align="center" style="color: #009bdb">热门文章</h2>-->
+</div>
+<!-- End Page Banner Area -->
+
+<!-- Start Main Container -->
+<div class="container main-container">
+    <!-- Start Services Tab -->
+    <div class="tabs-wrap">
+        <!-- Start Tabs Content -->
+        <div class="tab-content">
+            <!-- Start Tab #1 -->
+            <div class="tab-pane fade in active" id="tab-1">
+                <div class="row">
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="blog-author-bio">
+                            <!-- Start Services Tags -->
+                            <h4 class="side-heading1" style="color: #4cae4c">
+                                <span>分类</span>
+                            </h4>
+                            <!--<hr>-->
+                            <ul class="list-unstyled list-inline list-tags">
+                                <li><a href="#" th:href="@{'/essays?page=1'}">社交困难</a></li>
+                                <li><a href="#" th:href="@{'/essays?page=2'}">职场压力</a></li>
+                                <li><a href="#" th:href="@{'/essays?page=3'}">青春期</a></li>
+                                <li><a href="#" th:href="@{'/essays?page=4'}">厌恶自己</a></li>
+                                <li><a href="#" th:href="@{'/essays?page=5'}">抑郁</a></li>
+                                <li><a href="#" th:href="@{'/essays?page=3'}">婚后生活不愉快</a></li>
+                                <li><a href="#" th:href="@{'/essays?page=2'}">心理科普</a></li>
+                            </ul>
+                        </div>
+                        <!-- End Services Tags -->
+                        <!-- Start Recent News -->
+                        <div class="blog-author-bio">
+                            <h4 class="side-heading1" style="color: goldenrod">
+                                <span>热门文章</span>
+                            </h4>
+                            <div class="comments-carousel carousel vertical slide"
+                                 data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <!-- Start Slide #1 -->
+                                    <div class="item active">
+                                        <ul class="list-unstyled recent-comments-list" th:each="hotEssay:${hotEssays}">
+                                            <li>
+                                                <a th:href="@{'/essay/'+${hotEssay.eid}}" th:text="${hotEssay.title}"> 总用讨好的方式留住朋友 </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- End Slide #1 -->
+                                </div>
+                                <!-- Wrapper for Slides Ends -->
+                            </div>
+                            <!-- End Recent News -->
+                        </div>
+                    </div>
+                    <!-- Start Box #1 -->
+                    <div class="col-md-8 col-sm-12 col-xs-12" th:each="essay:${essayList}">
+                        <div class="col-xs-6 col-md-3">
+                            <a th:href="@{/essay/}+${essay.eid}" href="#" class="thumbnail">
+                                <img th:src="${essay.getPicture()}" src="assets/images/news-thumb-image-1.png">
+                            </a>
+                        </div>
+                        <div class="inner">
+                            <h4><a href="index" th:href="@{/essay/}+${essay.eid}" style="color: black" th:text="${essay.title}">孩子爱臭美也是一种成长</a></h4>
+                            <p th:text="${essay.introduction}"></p>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- End Box #1 -->
+                <div align="center" class="col-md-12 col-sm-12 col-xs-12">
+                    <nav aria-label="Page navigation center-block">
+                        <ul class="pager">
+                            <li>
+                                <a th:href="@{'/essays?page='+${prePage}}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <span th:each="num:${nums}">
+                        <li><a th:href="@{'/essays?page='+${num}}" th:text="${num}"></a></li>
+                        </span>
+                            <li>
+                                <a th:href="@{'/essays?page='+${nextPage}}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- End Tabs Content -->
+    </div>
+    <!-- End Services Tab -->
+</div>
+<footer th:replace="publicPages/footer::#footer"></footer>
+<div id="back-to-top">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script src="/assets/js/jquery.min.js"></script>
+<!-- JQuery Migrate JS -->
+<script src="/assets/js/jquery-migrate.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<!-- Slider JS Files -->
+<script src="/assets/js/plugins/camera/js/jquery.mobile.customized.min.js"></script>
+<script src="/assets/js/plugins/camera/js/jquery.easing.js"></script>
+<script src="/assets/js/plugins/camera/js/camera.min.js"></script>
+<!-- Modernizr JS -->
+<script src="/assets/js/plugins/shuffle/jquery.shuffle.modernizr.min.js"></script>
+<!-- Popup JS -->
+<script src="/assets/js/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<!-- Wow JS -->
+<script src="/assets/js/wow.min.js"></script>
+<!-- Main JS -->
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

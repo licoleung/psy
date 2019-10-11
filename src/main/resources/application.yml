@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    username: root
+    password: a971204b
+    url: jdbc:mysql://120.79.228.2:3306/pourfeelings?useUnicode=true&characterEncoding=UTF8
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+
+  thymeleaf:
+    cache: false
+  mvc:
+    date-format: yyyy-MM-dd
+mybatis:
+  config-location: classpath:mybaits/mybatis-config.xml
+  mapper-locations: classpath:mapper/*.xml
+logging:
+  level: debug
+#pagehelper:
+#  helper-dialect: mysql
+#  params: count=countSql
+#  reasonable: true
+#  support-methods-arguments: true

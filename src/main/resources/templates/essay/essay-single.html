@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="publicPages/head::#headPart">
+</head>
+<body>
+<script>
+    $(document).ready(function () {
+        $("img").addClass("img-responsive");
+        $("img").addClass("center-block");
+    });
+</script>
+<style>
+    .title {
+        margin-top: 20px;
+        font-family: PingFangSC-Medium;
+        font-size: 22px;
+        color: #333333;
+        font-weight: 700;
+    }
+
+    .info {
+        color: gray;
+        font-size: 12px;
+        margin-left: 0px;
+    }
+</style>
+<header class="main-header">
+    <div th:replace="publicPages/header::#header(activeUri='essay')"></div>
+</header>
+<div class="main-banner two">
+    <!--<h2 align="center" style="color: #009bdb">问答</h2>-->
+</div>
+
+<div class="container main-container">
+    <div class="row">
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="news-post-single">
+                <article class="news-post">
+                    <p class="title" th:text="${essay.getTitle()}"></p>
+                    <span class="info" th:text="发布于+${#dates.format(essay.getTime(),'yyyy-MM-dd HH:mm')}"></span>
+                    <span>&nbsp;&nbsp;</span>
+                    <span class="info" th:text="${essay.getLikenum()}+赞"></span>
+                    <span>&nbsp;&nbsp;</span>
+                    <span class="info" th:text="${essay.getReadnum()}+阅读"></span>
+                    <hr>
+                    <div th:utext="${essay.getContent()}"></div>
+                    <div align="right"><a href="#">返回顶部</a></div>
+                </article>
+            </div>
+        </div>
+
+        <h4 class="side-heading1">评论</h4>
+        <div th:if="${session.loginUser}!=null">
+            <form th:action="@{/comment}" method="post">
+                <table width="100%" >
+                    <tr>
+                        <td><textarea class="form-control" rows="3" name="content"></textarea></td>
+                        <td hidden="hidden"><input name="uid" th:value="${session.loginUser.uid}"></td>
+                        <td hidden="hidden"><input name="eid" th:value="${essay.getEid()}"></td>
+                    </tr>
+                    <tr>
+                        <td height="50px"><button type="submit" class="btn btn-info center-block">提交评论</button></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div th:if="${session.loginUser}==null">
+            <div class="alert alert-info" role="alert">评论前请先<a th:href="@{/login}">登录</a></div>
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12" th:each="comment:${comments}">
+            <h4 class="side-heading1"></h4>
+            <div id="testimonial-carousel" class="testimonial-box carousel" data-ride="carousel">
+                <div class="carousel-inner quote-box" role="listbox">
+                    <i class="fa fa-quote-left fa-2x"></i>
+                    <div class="item active">
+                        <blockquote th:text="${comment.content}">
+                        </blockquote>
+                        <div class="quote-footer">
+                           [[${comment.user.username}]]<br> <span>评论于 [[${#dates.format(comment.cmTime,'yyyy-MM-dd HH:mm')}]]</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="publicPages/footer::#footer"></footer>
+<div id="back-to-top">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script src="/assets/js/jquery.min.js"></script>
+<!-- JQuery Migrate JS -->
+<script src="/assets/js/jquery-migrate.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<!-- Slider JS Files -->
+<script src="/assets/js/plugins/camera/js/jquery.mobile.customized.min.js"></script>
+<script src="/assets/js/plugins/camera/js/jquery.easing.js"></script>
+<script src="/assets/js/plugins/camera/js/camera.min.js"></script>
+<!-- Modernizr JS -->
+<script src="/assets/js/plugins/shuffle/jquery.shuffle.modernizr.min.js"></script>
+<!-- Popup JS -->
+<script src="/assets/js/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<!-- Wow JS -->
+<script src="/assets/js/wow.min.js"></script>
+<!-- Main JS -->
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

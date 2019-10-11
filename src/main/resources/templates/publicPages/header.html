@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="publicPages/head::#headPart">
+</head>
+<body>
+<div class="container container-relative" id="header">
+    <!-- Start TopBar Area -->
+    <div class="top-bar">
+        <div class="row">
+            <div class="col-sm-9 col-xs-9"></div>
+            <div class="col-sm-3 col-xs-3 col-md-3">
+                <span class="top-info"></span><span th:if="${session.loginUser}==null"><a href="/login">登录</a></span><span th:if="${session.loginUser}!=null">[[${session.loginUser.username}]]</span>
+                <span class="top-info"></span><span th:if="${session.loginUser}==null"><a href="/register">注册</a></span><span th:if="${session.loginUser}!=null"><a href="/user/logout">注销</a></span>
+            </div>
+        </div>
+    </div>
+    <!-- End TopBar Area -->
+    <!-- Start NavBar Area -->
+    <nav id="nav" class="navbar navbar-default navbar-static-top affix-top">
+        <div class="container">
+            <div class="navbar-header">
+                <!-- Start Collapse Button -->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- End Collapse Button -->
+                <!-- Start Website Logo -->
+                <a href="/index" class="navbar-brand">
+                    <img th:src="@{/assets/images/logo.png}" class="logo" alt="Logo"> 心理<span>辅导</span>
+                </a>
+                <!-- End Website Logo -->
+            </div>
+            <!-- Start Menu Area -->
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li  th:class="${activeUri=='index'?'active':''}"><a href="/index">首页</a></li>
+                    <li  th:class="${activeUri=='consult'?'active':''}"><a href="/consultation">心理咨询</a></li>
+                    <li  th:class="${activeUri=='test'?'active':''}"><a href="/psyTest">心理测试</a></li>
+                    <li th:class="${activeUri=='essay'?'active':''}"><a href="/essays">热文</a></li>
+                    <!--                         <li class="active"><a href="service-single.html">问答</a></li> -->
+                    <li  th:class="${activeUri=='question'?'active':''}"><a href="/questions">问答</a></li>
+                    <li><a href="http://www.lizhi.fm/label/24229804066210224/" target="_blank">FM</a></li>
+                    <li  th:class="${activeUri=='info'?'active':''}"><a href="/info">个人信息</a></li>
+                </ul>
+            </div>
+            <!-- Start Menu Area -->
+        </div>
+    </nav>
+    <!-- End NavBar Area -->
+</div>
+</body>
+</html>

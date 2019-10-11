@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="publicPages/head::#headPart">
+</head>
+<body>
+<header class="main-header">
+    <div th:replace="publicPages/header::#header(activeUri='info')"></div>
+</header>
+<div class="main-banner six">
+</div>
+<div class="container main-container">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <form action="/editUser" method="post">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th colspan="2">用户信息</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>ID</td>
+                        <td th:text="${session.loginUser.uid}"></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>用户名</td>
+                        <td><input name="username" th:value="${session.loginUser.username}"></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>联系方式</td>
+                        <td><input name="phone" th:value="${session.loginUser.phone}"></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>电子邮箱</td>
+                        <td><input name="email" th:value="${session.loginUser.email}"></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>用户类型</td>
+                        <td th:text="${session.loginUser.type}">${sessionScope.loginUser.email}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div align="center">
+                    <button class="btn btn-success" type="submit">确认修改</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<footer th:replace="publicPages/footer::#footer"></footer>
+<div id="back-to-top">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script src="/assets/js/jquery.min.js"></script>
+<!-- JQuery Migrate JS -->
+<script src="/assets/js/jquery-migrate.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<!-- Slider JS Files -->
+<script src="/assets/js/plugins/camera/js/jquery.mobile.customized.min.js"></script>
+<script src="/assets/js/plugins/camera/js/jquery.easing.js"></script>
+<script src="/assets/js/plugins/camera/js/camera.min.js"></script>
+<!-- Modernizr JS -->
+<script src="/assets/js/plugins/shuffle/jquery.shuffle.modernizr.min.js"></script>
+<!-- Popup JS -->
+<script src="/assets/js/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<!-- Wow JS -->
+<script src="/assets/js/wow.min.js"></script>
+<!-- Main JS -->
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

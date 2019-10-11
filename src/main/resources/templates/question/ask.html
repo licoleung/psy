@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="publicPages/head::#headPart">
+</head>
+<body>
+<header class="main-header">
+    <div th:replace="publicPages/header::#header(activeUri='question')"></div>
+</header>
+<div class="main-banner two">
+</div>
+<div class="container main-container">
+    <div class="row">
+        <!-- Start Content Area -->
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <form th:action="@{/question}" method="post">
+                <table width="100%" >
+                    <tr>
+                        <td>请输入标题：</td>
+                    </tr>
+                    <tr>
+                        <td><textarea class="form-control" rows="2" name="title"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>请输入提问内容：</td>
+                    </tr>
+                    <tr>
+                        <td><textarea class="form-control" rows="12" name="content"></textarea></td>
+                        <td hidden="hidden"><input name="uid" th:value="${session.loginUser.uid}"></td>
+                    </tr>
+                    <tr>
+                        <td height="50px"><button type="submit" class="btn btn-info center-block" style="width: 100%">提交</button></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<footer th:replace="publicPages/footer::#footer"></footer>
+<div id="back-to-top">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<!-- JQuery Migrate JS -->
+<script src="/assets/js/jquery-migrate.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<!-- Slider JS Files -->
+<script src="/assets/js/plugins/camera/js/jquery.mobile.customized.min.js"></script>
+<script src="/assets/js/plugins/camera/js/jquery.easing.js"></script>
+<script src="/assets/js/plugins/camera/js/camera.min.js"></script>
+<!-- Modernizr JS -->
+<script src="/assets/js/plugins/shuffle/jquery.shuffle.modernizr.min.js"></script>
+<!-- Popup JS -->
+<script src="/assets/js/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<!-- Wow JS -->
+<script src="/assets/js/wow.min.js"></script>
+<!-- Main JS -->
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

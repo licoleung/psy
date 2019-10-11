@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="publicPages/head::#headPart">
+</head>
+<body>
+<header class="main-header">
+    <div th:replace="publicPages/header::#header(activeUri='consult')"></div>
+
+
+</header>
+
+<div class="main-banner six">
+</div>
+<div class="container main-container">
+    <h3>聊天室</h3>
+
+    <hr>
+    <!-- Start Services Tab -->
+    <div class="tabs-wrap">
+        <!-- Start Tabs Content -->
+        <div class="tab-content">
+            <!-- Start Tab #1 -->
+            <div class="tab-pane fade in active" id="tab-1">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <form onsubmit="return false;">
+                            <input type="hidden" th:value="${session.loginUser.username}" id="name1">
+                            <input type="hidden" th:value="${teacher.realname}" id="teacherName">
+                        <textarea class="form-control" rows="10" id="responseText"  readonly>聊天记录</textarea>
+                        <textarea class="form-control" rows="3" id="message"></textarea>
+                        <p></p>
+                        <div align="right"><button class="btn btn-success" onclick="send(document.getElementById('message').value)">发送</button></div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <!-- End Tab #1 -->
+        </div>
+        <!-- End Tabs Content -->
+    </div>
+    <!-- End Services Tab -->
+</div>
+<footer th:replace="publicPages/footer::#footer"></footer>
+<div id="back-to-top">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript">
+    var messageName=document.getElementById('name1').value+'+'+document.getElementById('teacherName').value;
+    var socket;
+
+    if(window.WebSocket){
+        socket=new WebSocket("ws://120.79.228.2:8899/ws");
+
+        socket.onmessage =function (ev) {
+            var ta=document.getElementById("responseText");
+            ta.value=ta.value+"\n"+ev.data;
+            ta.scrollTop = ta.scrollHeight;
+
+        }
+
+        socket.onopen =function (ev) {
+            var ta=document.getElementById("responseText");
+            ta.value="连接开启"
+            send(messageName);
+        }
+
+        socket.onclose=function (ev) {
+            var ta=document.getElementById("responseText");
+            ta.value=ta.value+"\n"+"连接关闭";
+            ta.scrollTop = ta.scrollHeight;
+        }
+    }else {
+        alert("浏览器不支持")
+    }
+
+    function send(message) {
+
+        if(!window.WebSocket){
+            return;
+        }
+        if(socket.readyState == WebSocket.OPEN){
+            socket.send(message);
+            document.getElementById('message').value="";
+        }else {
+            alert("连接未开启");
+        }
+    }
+
+</script>
+<!-- JQuery Migrate JS -->
+<script src="/assets/js/jquery-migrate.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<!-- Slider JS Files -->
+<script src="/assets/js/plugins/camera/js/jquery.mobile.customized.min.js"></script>
+<script src="/assets/js/plugins/camera/js/jquery.easing.js"></script>
+<script src="/assets/js/plugins/camera/js/camera.min.js"></script>
+<!-- Modernizr JS -->
+<script src="/assets/js/plugins/shuffle/jquery.shuffle.modernizr.min.js"></script>
+<!-- Popup JS -->
+<script src="/assets/js/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<!-- Wow JS -->
+<script src="/assets/js/wow.min.js"></script>
+<!-- Main JS -->
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

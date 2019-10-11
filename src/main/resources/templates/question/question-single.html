@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="publicPages/head::#headPart">
+</head>
+<body>
+<style>
+    .info {
+        color: gray;
+        font-size: 12px;
+        margin-left: 0px;
+    }
+</style>
+<header class="main-header">
+    <div th:replace="publicPages/header::#header(activeUri='question')"></div>
+</header>
+<div class="main-banner two">
+    <!--<h2 align="center" style="color: #009bdb">问答</h2>-->
+</div>
+<!-- End Page Banner Area -->
+<!-- Start Main Container -->
+<div class="container main-container">
+    <div class="row">
+        <!-- Start Content Area -->
+        <div class="col-md-9 col-sm-12 col-xs-12">
+
+            <!-- Start Doctor Bio Area -->
+            <div class="blog-author-bio">
+                <h4 class="side-heading1" th:text="${question.getTitle()}" style="color:#000000;"></h4>
+                <div class="row">
+                    <div class="col-xs-12 text-justify">
+                        <span class="info" th:text="提问于+${#dates.format(question.getTime(),'yyyy-MM-dd HH:mm')}"></span>
+                        <p th:text="${question.getContent()}"></p>
+                    </div>
+                </div>
+            </div>
+            <!-- End Doctor Bio Area -->
+            <!-- Start Doctor Bio Area -->
+            <div class="blog-author-bio" th:each="answer:${answersByQid}">
+                <div class="row">
+                    <div class="col-xs-12 text-justify">
+                        <h5 th:text="${answer.user.username}"></h5>
+                        <span class="info" th:text="回答于+${#dates.format(answer.anTime,'yyyy-MM-dd HH:mm')}"></span>
+                        <p th:text="${answer.content}"></p>
+                    </div>
+                </div>
+            </div>
+            <!-- End Doctor Bio Area -->
+            <div th:if="${session.loginUser}!=null">
+                <form th:action="@{/answer}" method="post">
+                    <table width="100%" >
+                        <tr>
+                            <td><textarea class="form-control" rows="3" name="content"></textarea></td>
+                            <td hidden="hidden"><input name="uid" th:value="${session.loginUser.uid}"></td>
+                            <td hidden="hidden"><input name="qid" th:value="${question.getQid()}"></td>
+                        </tr>
+                        <tr>
+                            <td height="50px"><button type="submit" class="btn btn-info center-block" style="width: 100%">提交回答</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div th:if="${session.loginUser}==null">
+                <div class="alert alert-info" role="alert">回答前请先<a th:href="@{/login}">登录</a></div>
+            </div>
+
+            <div align="center" class="col-md-12 col-sm-12 col-xs-12">
+                <nav aria-label="Page navigation center-block">
+                    <ul class="pager">
+                        <li>
+                            <a th:href="@{'/question/'+${question.qid}+'?page='+${prePage}}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <span th:each="num:${nums}">
+                        <li><a th:href="@{'/question/'+${question.qid}+'?page='+${num}}" th:text="${num}"></a></li>
+                        </span>
+                        <li>
+                            <a th:href="@{'/question/'+${question.qid}+'?page='+${nextPage}}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- End Content Area -->
+        <!-- Start Sidearea Area -->
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <!-- Start Services Tags -->
+            <!--<button class="btn btn-success" style="width: 100%" th:href="@{/ask}">我要提问</button>-->
+            <a class="btn btn-success" style="width: 100%" th:href="@{/ask}">我要提问</a>
+            <!-- End Services Tags -->
+
+            <!-- Start Recent News -->
+            <h4 class="side-heading1">
+                <span>最新</span>提问
+            </h4>
+            <div class="comments-carousel carousel vertical slide"
+                 data-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Start Slide #1 -->
+                    <div class="item active">
+                        <ul class="list-unstyled recent-comments-list">
+                            <li th:each="question:${newQuestion}">
+                                <p>
+                                    <a th:href="@{/question/}+${question.qid}" th:text="${question.title}"> 总用讨好的方式留住朋友，这种人格怎么办？ </a>
+                                </p> <span class="date-stamp" > <i class="fa fa-clock-o"></i>
+										[[${#dates.format(question.time,'yyyy-MM-dd HH:mm')}]] <i class="fa fa-user"></i> [[${question.user.username}]]
+								</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End Slide #1 -->
+                </div>
+                <!-- Wrapper for Slides Ends -->
+            </div>
+        </div>
+        <!-- End Sidearea Area -->
+    </div>
+</div>
+<footer th:replace="publicPages/footer::#footer"></footer>
+<div id="back-to-top">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<!-- JQuery Migrate JS -->
+<script src="/assets/js/jquery-migrate.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<!-- Slider JS Files -->
+<script src="/assets/js/plugins/camera/js/jquery.mobile.customized.min.js"></script>
+<script src="/assets/js/plugins/camera/js/jquery.easing.js"></script>
+<script src="/assets/js/plugins/camera/js/camera.min.js"></script>
+<!-- Modernizr JS -->
+<script src="/assets/js/plugins/shuffle/jquery.shuffle.modernizr.min.js"></script>
+<!-- Popup JS -->
+<script src="/assets/js/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<!-- Wow JS -->
+<script src="/assets/js/wow.min.js"></script>
+<!-- Main JS -->
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

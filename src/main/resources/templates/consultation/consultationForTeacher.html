@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="publicPages/head::#headPart">
+</head>
+<body>
+<header class="main-header">
+    <div th:replace="publicPages/header::#header(activeUri='consult')"></div>
+</header>
+<div class="main-banner six">
+</div>
+<div class="container main-container">
+    <hr>
+    <!-- Start Services Tab -->
+    <div class="tabs-wrap">
+        <!-- Start Tabs Content -->
+        <div class="tab-content">
+            <!-- Start Tab #1 -->
+            <div class="tab-pane fade in active" id="tab-1">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <a class="btn btn-primary" style="width: 100%" href="/TeachertoChat">进入聊天室</a>
+                    </div>
+                </div>
+            </div>
+            <!-- End Tab #1 -->
+        </div>
+        <!-- End Tabs Content -->
+    </div>
+    <!-- End Services Tab -->
+</div>
+<footer th:replace="publicPages/footer::#footer"></footer>
+<div id="back-to-top">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script src="/assets/js/jquery.min.js"></script>
+<!-- JQuery Migrate JS -->
+<script src="/assets/js/jquery-migrate.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<!-- Slider JS Files -->
+<script src="/assets/js/plugins/camera/js/jquery.mobile.customized.min.js"></script>
+<script src="/assets/js/plugins/camera/js/jquery.easing.js"></script>
+<script src="/assets/js/plugins/camera/js/camera.min.js"></script>
+<!-- Modernizr JS -->
+<script src="/assets/js/plugins/shuffle/jquery.shuffle.modernizr.min.js"></script>
+<!-- Popup JS -->
+<script src="/assets/js/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<!-- Wow JS -->
+<script src="/assets/js/wow.min.js"></script>
+<!-- Main JS -->
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

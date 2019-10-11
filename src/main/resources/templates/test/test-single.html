@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="publicPages/head::#headPart">
+</head>
+<body>
+
+<header class="main-header">
+    <div th:replace="publicPages/header::#header(activeUri='test')"></div>
+</header>
+
+<div class="main-banner one">
+</div>
+
+<div class="container main-container">
+    <div class="row">
+        <!-- Start Content Area -->
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <!-- Start Single Service Area -->
+            <div class="news-post-single">
+                <!-- Start Service Content Area -->
+                <article class="news-post">
+                    <div class="inner">
+                        <h4 align="center" th:text="${test.title}">SDS抑郁自评量表</h4>
+                        <div class="news-post-content">
+                            <!--<form action="/essays">-->
+                                <span th:each="problem:${problems}">
+                                <p th:text="${problem.getContent()}">1. 我觉得闷闷不乐，情绪低沉</p>
+                                <input type="radio" th:name="${problem.pid}" value="1" class="a"> A：没有或很少时间<br />
+                                <input type="radio" th:name="${problem.pid}" value="2" class="a"> B：小部分时间<br />
+                                <input type="radio" th:name="${problem.pid}" value="3" class="a"> C：相当多时间<br />
+                                <input type="radio" th:name="${problem.pid}" value="4" class="a"> D：绝大部分或全部时间<br />
+                                <hr>
+                                </span>
+                                <p align="center">
+                                    <input type="button" value="提交测试" class="btn btn-primary" onclick="test()">
+                                </p>
+                            <!--</form>-->
+                        </div>
+                    </div>
+                </article>
+                <!-- End Service Content Area -->
+            </div>
+
+        </div>
+        <!-- End Content Area -->
+    </div>
+</div>
+
+<script type="text/javascript">
+    function test(){
+        //alert("tid:"+tid);
+        var radios = document.getElementsByClassName("a");
+        var value = 0;
+        //alert("xxx"+radios.length)
+        for(var i=0;i<radios.length;i++){
+            if(radios[i].checked == true){
+                value = value + (radios[i].value-1)+1;
+            }
+        }
+        value = value * 1.25;
+        value = Math.round(value-0.5);
+        //alert(value);
+        if(value<50){
+            alert("你很正常！");
+        }else if(value<60){
+            alert("你轻度焦虑！！");
+        }else if(value<70){
+            alert("你中度焦虑！！！");
+        }else{
+            alert("你重度焦虑！！！！");
+        }
+        //location.href='/essays';
+    }
+</script>
+<footer th:replace="publicPages/footer::#footer"></footer>
+<div id="back-to-top">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script src="/assets/js/jquery.min.js"></script>
+<!-- JQuery Migrate JS -->
+<script src="/assets/js/jquery-migrate.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<!-- Slider JS Files -->
+<script src="/assets/js/plugins/camera/js/jquery.mobile.customized.min.js"></script>
+<script src="/assets/js/plugins/camera/js/jquery.easing.js"></script>
+<script src="/assets/js/plugins/camera/js/camera.min.js"></script>
+<!-- Modernizr JS -->
+<script src="/assets/js/plugins/shuffle/jquery.shuffle.modernizr.min.js"></script>
+<!-- Popup JS -->
+<script src="/assets/js/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<!-- Wow JS -->
+<script src="/assets/js/wow.min.js"></script>
+<!-- Main JS -->
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

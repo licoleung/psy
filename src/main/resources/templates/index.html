@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="publicPages/head::#headPart">
+</head>
+<body>
+<header class="main-header">
+    <div th:replace="publicPages/header::#header(activeUri='index')"></div>
+</header>
+<section class="slider clearfix">
+    <div id="camera_wrap_1" class="camera_wrap camera_white_skin">
+        <!-- Start Slide #1 -->
+        <div data-src="assets/images/slider/slider-image-2.png">
+            <div class="camera_caption fadeIn hidden-sm hidden-xs">
+                <h2>这世界除了心理上的失败，实际上并不存在什么失败，只要不是一败涂地，你一定会取得胜利的。</h2>
+                <p>——亨·奥斯汀</p>
+                <!-- 					<a href="services.html" class="btn btn-secondary">Read More</a> -->
+            </div>
+        </div>
+        <!-- End Slide #1 -->
+        <!-- Start Slide #2 -->
+        <div data-src="assets/images/slider/slider-image-1.png">
+            <div class="camera_caption fadeIn hidden-sm hidden-xs">
+                <h2>有恬静的心灵就等于把握住心灵的全部；有稳定的精神就等于能指挥自己！</h2>
+                <p>——米贝尔</p>
+                <!-- 					<a href="services.html" class="btn btn-secondary">Read More</a> -->
+            </div>
+        </div>
+        <!-- End Slide #2 -->
+        <!-- Start Slide #3 -->
+        <div data-src="assets/images/slider/slider-image-3.png">
+            <div class="camera_caption fadeIn hidden-sm hidden-xs">
+                <h2>只要朝着阳光，便不会看见阴影。</h2>
+                <p>——海伦·凯勒</p>
+            </div>
+        </div>
+        <!-- End Slide #3 -->
+    </div>
+</section>
+<div id="begin-module" class="container main-container">
+    <!-- Start Notification Area -->
+    <div class="notification-boxes row">
+        <!-- Start Box #1 -->
+        <div class="col-md-3 col-sm-6 col-xs-6">
+            <div class="box wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
+                <i class="fa fa-user-md"></i>
+                <h4>心理咨询</h4>
+                <p>与专业的心理老师进行一对一的心理咨询，老师将倾听你的内心世界，并且为你解答疑惑</p>
+                <a href="Consultation.jsp" th:href="@{/consultation}" class="btn btn-transparent">查看更多</a>
+            </div>
+        </div>
+        <!-- End Box #1 -->
+        <!-- Start Box #2 -->
+        <div class="col-md-3 col-sm-6 col-xs-6">
+            <div class="box wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+                <i class="fa fa-stethoscope"></i>
+                <h4>心理测试</h4>
+                <p>通过心理测试可以对自己进行自我检查，更加了解自己内心深处的一面</p>
+                <a href="PsyTest.jsp" th:href="@{/psyTest}" class="btn btn-transparent">查看更多</a>
+            </div>
+        </div>
+        <!-- End Box #2 -->
+        <!-- Start Box #3 -->
+        <div class="col-md-3 col-sm-6 col-xs-6">
+            <div class="box wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1.5s">
+                <i class="fa fa-flask"></i>
+                <h4>最新热文</h4>
+                <p>你将可以在这里看到最新的最热的有关心理方面的文章，了解更多关于心理学方面的知识</p>
+                <a href="Essay.jsp" th:href="@{/essays}" class="btn btn-transparent">查看更多</a>
+            </div>
+        </div>
+        <!-- End Box #3 -->
+        <!-- Start Box #4 -->
+        <div class="col-md-3 col-sm-6 col-xs-6">
+            <div class="box wow fadeInLeft" data-wow-duration="1s" data-wow-delay="2s">
+                <i class="fa fa-comments-o"></i>
+                <h4>问答</h4>
+                <p>同学和老师们都可以在问答模块进行提问与回答，共同讨论解决有关心理问题的方法</p>
+                <a href="Question.jsp" class="btn btn-transparent" th:href="@{/questions}">查看更多</a>
+            </div>
+        </div>
+        <!-- End Box #4 -->
+    </div>
+    <!-- End Notification Area -->
+</div>
+<footer th:replace="publicPages/footer::#footer"></footer>
+<div id="back-to-top">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script src="/assets/js/jquery.min.js"></script>
+<!-- JQuery Migrate JS -->
+<script src="/assets/js/jquery-migrate.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<!-- Slider JS Files -->
+<script src="/assets/js/plugins/camera/js/jquery.mobile.customized.min.js"></script>
+<script src="/assets/js/plugins/camera/js/jquery.easing.js"></script>
+<script src="/assets/js/plugins/camera/js/camera.min.js"></script>
+<!-- Modernizr JS -->
+<script src="/assets/js/plugins/shuffle/jquery.shuffle.modernizr.min.js"></script>
+<!-- Popup JS -->
+<script src="/assets/js/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<!-- Wow JS -->
+<script src="/assets/js/wow.min.js"></script>
+<!-- Main JS -->
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

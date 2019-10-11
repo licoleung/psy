@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="publicPages/head::#headPart">
+</head>
+<body>
+<header class="main-header">
+    <div th:replace="publicPages/header::#header(activeUri='consult')"></div>
+</header>
+<div class="main-banner six">
+</div>
+<div class="container main-container">
+    <hr>
+    <!-- Start Services Tab -->
+    <div class="tabs-wrap">
+        <!-- Start Tabs Content -->
+        <div class="tab-content">
+            <!-- Start Tab #1 -->
+            <div class="tab-pane fade in active" id="tab-1">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-6" th:each="teacher:${teachers}">
+                        <div class="blog-author-bio">
+                            <img src="assets/images/home-doctor-1.jpg" alt="Dental Care"
+                                 class="img-responsive img-center-sm img-center-xs img-circle">
+                            <div class="inner">
+                                <h4 align="center" th:text="${teacher.realname}">${teacher.realname}</h4>
+                                <!--<p align="center" style="color: red">${teacher.status}</p>-->
+                                <!--<hr>-->
+                                <!--<p>擅长:${teacher.field}</p>-->
+                                <p align="center"><a th:href="@{/toChat/}+${teacher.uid}"  class="btn btn-secondary" target="_blank">立即咨询</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <nav aria-label="Page navigation center-block">
+                    <ul class="pager">
+                        <li>
+                            <a th:href="@{'/consultation?page='+${prePage}}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <span th:each="num:${nums}">
+                        <li><a th:href="@{'/consultation?page='+${num}}" th:text="${num}"></a></li>
+                        </span>
+                        <li>
+                            <a th:href="@{'/consultation?page='+${nextPage}}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- End Tab #1 -->
+        </div>
+        <!-- End Tabs Content -->
+    </div>
+    <!-- End Services Tab -->
+</div>
+<footer th:replace="publicPages/footer::#footer"></footer>
+<div id="back-to-top">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script src="/assets/js/jquery.min.js"></script>
+<!-- JQuery Migrate JS -->
+<script src="/assets/js/jquery-migrate.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<!-- Slider JS Files -->
+<script src="/assets/js/plugins/camera/js/jquery.mobile.customized.min.js"></script>
+<script src="/assets/js/plugins/camera/js/jquery.easing.js"></script>
+<script src="/assets/js/plugins/camera/js/camera.min.js"></script>
+<!-- Modernizr JS -->
+<script src="/assets/js/plugins/shuffle/jquery.shuffle.modernizr.min.js"></script>
+<!-- Popup JS -->
+<script src="/assets/js/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<!-- Wow JS -->
+<script src="/assets/js/wow.min.js"></script>
+<!-- Main JS -->
+<script src="/assets/js/main.js"></script>
+</body>
+</html>
